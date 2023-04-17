@@ -2,12 +2,17 @@ const screen1 = document.querySelector(".screen1")
 const screen2 = document.querySelector(".screen2")
 const btnTry = document.querySelector("#btnTry")
 const btnReset = document.querySelector("#btnReset")
-const randomNumber = Math.round(Math.random() * 10)
+let randomNumber = Math.round(Math.random() * 10)
 let xAttempts = 1
 
 // Eventos
 btnTry.addEventListener('click', handleTryClick)
 btnReset.addEventListener('click', handleResetClick)
+document.addEventListener('keydown', function(e){
+    if(e.key == 'Enter' && screen1.classList.contains('hide')) {
+        handleResetClick()
+    }
+})
 
 
 // funcão callback
@@ -29,6 +34,7 @@ function handleTryClick(event) {
 function handleResetClick() {
     toggleScreen()
     xAttempts = 1
+    randomNumber = Math.round(Math.random() * 10)
 }
 
 function toggleScreen() {
